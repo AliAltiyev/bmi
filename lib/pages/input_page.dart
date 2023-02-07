@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../widgets/reusable_card.dart';
 import '../widgets/reusable_card_content.dart';
 
+const activeColor = Color(0xff282a42);
+const inActiveColor = Color(0xFF111328);
 const bottomContainerColor = 0xFFEB1555;
 const bottomContainerHeight = 70.0;
 
@@ -14,6 +16,27 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleColor = inActiveColor;
+  double maleGenderCardElevation = 0;
+  double femaleGenderCardElevation = 0;
+  Color feMaleColor = inActiveColor;
+
+  _updateGenderColor(int index) {
+    if (index == 1 && maleColor == inActiveColor && maleGenderCardElevation == 0) {
+      feMaleColor = inActiveColor;
+      femaleGenderCardElevation = 0;
+      maleGenderCardElevation = 30;
+      maleColor = activeColor;
+    }
+
+    if (index == 2 && feMaleColor == inActiveColor && femaleGenderCardElevation == 0 ) {
+      maleColor = inActiveColor;
+      maleGenderCardElevation = 0;
+      femaleGenderCardElevation = 30;
+      feMaleColor = activeColor;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,24 +48,61 @@ class _InputPageState extends State<InputPage> {
         children: [
           Expanded(
             child: Row(
-              children: const [
-                ReUsableCard(
-                    cardChild: ReUsableCardContent(
-                  iconData: Icons.female,
-                  label: "Female",
-                )),
-                ReUsableCard(
-                    cardChild: ReUsableCardContent(
-                  iconData: Icons.male,
-                  label: "Male",
-                ))
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    child: ReUsableCard(
+                      elevation: femaleGenderCardElevation,
+                      color: feMaleColor,
+                      cardChild: const ReUsableCardContent(
+                        iconData: Icons.female,
+                        label: "Female",
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        _updateGenderColor(2);
+                      });
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                      child: ReUsableCard(
+                          elevation: maleGenderCardElevation,
+                          color: maleColor,
+                          cardChild: const ReUsableCardContent(
+                            iconData: Icons.male,
+                            label: "Male",
+                          )),
+                      onTap: () {
+                        setState(() {
+                          _updateGenderColor(1);
+                        });
+                      }),
+                )
               ],
             ),
           ),
-          const ReUsableCard(),
+          const Expanded(
+            child: ReUsableCard(
+              color: inActiveColor,
+            ),
+          ),
           Expanded(
             child: Row(
-              children: const [ReUsableCard(), ReUsableCard()],
+              children: const [
+                Expanded(
+                  child: ReUsableCard(
+                    color: inActiveColor,
+                  ),
+                ),
+                Expanded(
+                  child: ReUsableCard(
+                    color: inActiveColor,
+                  ),
+                )
+              ],
             ),
           ),
           Container(
