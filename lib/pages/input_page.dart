@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../helper/gender.dart';
 import '../widgets/reusable_card.dart';
 import '../widgets/reusable_card_gender_content.dart';
+import '../widgets/reusable_card_weight_age_content.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -15,6 +16,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender? gender;
+  final int _userWeight = 60;
+  final int _userAge = 19;
 
   @override
   Widget build(BuildContext context) {
@@ -71,15 +74,20 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: Row(
-              children: const [
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
                 Expanded(
                   child: ReUsableCard(
                     color: kInActiveColor,
+                    cardChild: ReUsableAgeAndWeightContent(
+                      labelText: 'Weight', userInput: _userWeight,),
                   ),
                 ),
-                Expanded(
+                 Expanded(
                   child: ReUsableCard(
-                    color: kInActiveColor,
+                      color: kInActiveColor,
+                      cardChild: ReUsableAgeAndWeightContent(
+                        labelText: 'Age', userInput: _userAge,),
                   ),
                 )
               ],
@@ -90,9 +98,12 @@ class _InputPageState extends State<InputPage> {
             height: kBottomContainerHeight,
             margin: const EdgeInsets.only(top: 8),
             color: const Color(kBottomContainerColor),
-            child: const Text(
-              'Calculate BMI',
-              textAlign: TextAlign.center,
+            child: const Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Calculate BMI',style: TextStyle(fontSize: 25),
+                textAlign: TextAlign.center,
+              ),
             ),
           )
         ],
