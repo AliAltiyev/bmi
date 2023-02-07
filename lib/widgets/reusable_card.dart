@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 
-const reUsableContainerColor = 0xFF1d1e33;
-
 class ReUsableCard extends StatelessWidget {
   final Widget? cardChild;
+  final Color color;
+  final double? elevation;
 
-  const ReUsableCard({Key? key, this.cardChild}) : super(key: key);
+  const ReUsableCard(
+      {Key? key, this.cardChild, required this.color, this.elevation})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.all(15),
-        decoration: const BoxDecoration(
-            color: Color(reUsableContainerColor),
-            borderRadius: BorderRadius.all(Radius.circular(16))),
-        child: cardChild,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Material(
+        borderRadius:  BorderRadius.circular(16),
+        color: color,
+        elevation: elevation ?? 0.0,
+        child: Container(
+          margin: const EdgeInsets.all(15),
+          child: cardChild,
+        ),
       ),
     );
   }
