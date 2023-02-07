@@ -1,13 +1,10 @@
+import 'package:bmi/helper/constants.dart';
+import 'package:bmi/widgets/reusable_card_slider_content.dart';
 import 'package:flutter/material.dart';
 
 import '../helper/gender.dart';
 import '../widgets/reusable_card.dart';
-import '../widgets/reusable_card_content.dart';
-
-const activeColor = Color(0xff282a42);
-const inActiveColor = Color(0xFF111328);
-const bottomContainerColor = 0xFFEB1555;
-const bottomContainerHeight = 70.0;
+import '../widgets/reusable_card_gender_content.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -27,6 +24,7 @@ class _InputPageState extends State<InputPage> {
         title: const Text('BMI'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -40,7 +38,7 @@ class _InputPageState extends State<InputPage> {
                     },
                     elevation: gender == Gender.female ? 16 : 0,
                     color:
-                        gender == Gender.female ? activeColor : inActiveColor,
+                        gender == Gender.female ? kActiveColor : kInActiveColor,
                     cardChild: const ReUsableCardContent(
                       iconData: Icons.female,
                       label: "Female",
@@ -55,7 +53,7 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     elevation: gender == Gender.male ? 16 : 0,
-                    color: gender == Gender.male ? activeColor : inActiveColor,
+                    color: gender == Gender.male ? kActiveColor : kInActiveColor,
                     cardChild: const ReUsableCardContent(
                       iconData: Icons.male,
                       label: "Male",
@@ -67,7 +65,8 @@ class _InputPageState extends State<InputPage> {
           ),
           const Expanded(
             child: ReUsableCard(
-              color: inActiveColor,
+              cardChild: ReUsableCardSliderContent(),
+              color: kInActiveColor,
             ),
           ),
           Expanded(
@@ -75,12 +74,12 @@ class _InputPageState extends State<InputPage> {
               children: const [
                 Expanded(
                   child: ReUsableCard(
-                    color: inActiveColor,
+                    color: kInActiveColor,
                   ),
                 ),
                 Expanded(
                   child: ReUsableCard(
-                    color: inActiveColor,
+                    color: kInActiveColor,
                   ),
                 )
               ],
@@ -88,9 +87,9 @@ class _InputPageState extends State<InputPage> {
           ),
           Container(
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
             margin: const EdgeInsets.only(top: 8),
-            color: const Color(bottomContainerColor),
+            color: const Color(kBottomContainerColor),
             child: const Text(
               'Calculate BMI',
               textAlign: TextAlign.center,
