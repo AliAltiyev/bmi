@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/reusable_card.dart';
+import '../widgets/reusable_card_content.dart';
+
+const bottomContainerColor = 0xFFEB1555;
+const bottomContainerHeight = 70.0;
+
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
 
@@ -11,21 +17,6 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Theme(
-        data: ThemeData(
-            colorScheme: ColorScheme.fromSwatch()
-                .copyWith(secondary: Colors.deepPurple)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('BMI'),
@@ -34,13 +25,34 @@ class _InputPageState extends State<InputPage> {
         children: [
           Expanded(
             child: Row(
-              children: const [ReUsableCard(), ReUsableCard()],
+              children: const [
+                ReUsableCard(
+                    cardChild: ReUsableCardContent(
+                  iconData: Icons.female,
+                  label: "Female",
+                )),
+                ReUsableCard(
+                    cardChild: ReUsableCardContent(
+                  iconData: Icons.male,
+                  label: "Male",
+                ))
+              ],
             ),
           ),
           const ReUsableCard(),
           Expanded(
             child: Row(
               children: const [ReUsableCard(), ReUsableCard()],
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: bottomContainerHeight,
+            margin: const EdgeInsets.only(top: 8),
+            color: const Color(bottomContainerColor),
+            child: const Text(
+              'Calculate BMI',
+              textAlign: TextAlign.center,
             ),
           )
         ],
@@ -49,18 +61,3 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class ReUsableCard extends StatelessWidget {
-  const ReUsableCard({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.all(15),
-        decoration: const BoxDecoration(
-            color: Color(0xFF1d1e33),
-            borderRadius: BorderRadius.all(Radius.circular(16))),
-      ),
-    );
-  }
-}
