@@ -32,38 +32,33 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReUsableCard(
+                    onPress: () {
                       setState(() {
                         gender = Gender.female;
                       });
                     },
-                    child: ReUsableCard(
-                      elevation: gender == Gender.female ? 16 : 0,
-                      color:
-                          gender == Gender.female ? activeColor : inActiveColor,
-                      cardChild: const ReUsableCardContent(
-                        iconData: Icons.female,
-                        label: "Female",
-                      ),
+                    elevation: gender == Gender.female ? 16 : 0,
+                    color:
+                        gender == Gender.female ? activeColor : inActiveColor,
+                    cardChild: const ReUsableCardContent(
+                      iconData: Icons.female,
+                      label: "Female",
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReUsableCard(
+                    onPress: () {
                       setState(() {
                         gender = Gender.male;
                       });
                     },
-                    child: ReUsableCard(
-                      elevation: gender == Gender.male ? 16 : 0,
-                      color:
-                          gender == Gender.male ? activeColor : inActiveColor,
-                      cardChild: const ReUsableCardContent(
-                        iconData: Icons.male,
-                        label: "Male",
-                      ),
+                    elevation: gender == Gender.male ? 16 : 0,
+                    color: gender == Gender.male ? activeColor : inActiveColor,
+                    cardChild: const ReUsableCardContent(
+                      iconData: Icons.male,
+                      label: "Male",
                     ),
                   ),
                 )
