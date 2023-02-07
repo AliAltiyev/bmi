@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../helper/gender.dart';
 import '../widgets/reusable_card.dart';
 import '../widgets/reusable_card_content.dart';
 
@@ -21,15 +22,19 @@ class _InputPageState extends State<InputPage> {
   double femaleGenderCardElevation = 0;
   Color feMaleColor = inActiveColor;
 
-  _updateGenderColor(int index) {
-    if (index == 1 && maleColor == inActiveColor && maleGenderCardElevation == 0) {
+  _updateGenderColor(Gender gender) {
+    if (gender == Gender.male &&
+        maleColor == inActiveColor &&
+        maleGenderCardElevation == 0) {
       feMaleColor = inActiveColor;
       femaleGenderCardElevation = 0;
       maleGenderCardElevation = 30;
       maleColor = activeColor;
     }
 
-    if (index == 2 && feMaleColor == inActiveColor && femaleGenderCardElevation == 0 ) {
+    if (gender == Gender.female &&
+        feMaleColor == inActiveColor &&
+        femaleGenderCardElevation == 0) {
       maleColor = inActiveColor;
       maleGenderCardElevation = 0;
       femaleGenderCardElevation = 30;
@@ -61,7 +66,7 @@ class _InputPageState extends State<InputPage> {
                     ),
                     onTap: () {
                       setState(() {
-                        _updateGenderColor(2);
+                        _updateGenderColor(Gender.female);
                       });
                     },
                   ),
@@ -77,7 +82,7 @@ class _InputPageState extends State<InputPage> {
                           )),
                       onTap: () {
                         setState(() {
-                          _updateGenderColor(1);
+                          _updateGenderColor(Gender.male);
                         });
                       }),
                 )
