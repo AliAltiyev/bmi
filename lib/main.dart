@@ -1,4 +1,5 @@
 import 'package:bmi/pages/input_page.dart';
+import 'package:bmi/pages/result_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +12,11 @@ class Bmi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/' : (context) => const InputPage(),
+        '/result' : (context) => const ResultPage(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'BMI',
       theme: ThemeData.dark().copyWith(
@@ -25,7 +31,6 @@ class Bmi extends StatelessWidget {
               backgroundColor: Colors.purple, foregroundColor: Colors.white38),
           appBarTheme: const AppBarTheme(backgroundColor: Color(0xff0a0e21)),
           scaffoldBackgroundColor: const Color(0xff0a0e21)),
-      home: const InputPage(),
     );
   }
 }
