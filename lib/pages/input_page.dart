@@ -1,4 +1,5 @@
 import 'package:bmi/helper/constants.dart';
+import 'package:bmi/widgets/reusable_calculate_button.dart';
 import 'package:bmi/widgets/reusable_card_slider_content.dart';
 import 'package:flutter/material.dart';
 
@@ -95,25 +96,11 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/result');
-            },
-            child: Container(
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              margin: const EdgeInsets.only(top: 8),
-              color: const Color(kBottomContainerColor),
-              child: const Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Calculate BMI',
-                  style: TextStyle(fontSize: 25),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          )
+          ReUsableCalculateButton(
+              callback: () {
+                Navigator.pushNamed(context, '/result');
+              },
+              buttonTextLabel: 'CALCULATE')
         ],
       ),
     );
