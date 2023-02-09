@@ -1,11 +1,27 @@
 import 'package:bmi/helper/constants.dart';
+import 'package:bmi/helper/gender.dart';
 import 'package:bmi/widgets/reusable_calculate_button.dart';
 import 'package:bmi/widgets/reusable_card.dart';
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  final Gender userGender;
+  final String? userBmi;
+  final String? bmiTitle;
 
+  const ResultPage({
+    Key? key,
+    required this.userGender,
+    required this.userBmi,
+    required this.bmiTitle,
+  }) : super(key: key);
+
+  /*
+      • Underweight (Below 18.5)
+    • Healthy Weight (18.5 - 24.9)
+    • Overweight (25.0 - 29.9)
+    • Obesity (30.0 and Above)
+   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,16 +43,16 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Normal",
+                  Text(
+                    bmiTitle!,
                     style: kUserResultTitleTextStyle,
                   ),
-                  const Text(
-                    '100',
+                  Text(
+                    userBmi!,
                     style: kUserResultWeightTextStyle,
                   ),
-                  const Text(
-                    'Your weight is 100 and you should eat more',
+                  Text(
+                    bmiTitle!,
                     style: kUserResultWeightDescriptionTextStyle,
                     textAlign: TextAlign.center,
                   ),
